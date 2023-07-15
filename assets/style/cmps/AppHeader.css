@@ -1,0 +1,17 @@
+.app-header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+
+  padding: 1em;
+}
+
+.nav-list{
+  margin-left: auto;
+}
+@media(max-width: 720px) {
+  .app-header {
+    color: var(--secondary-clr2);
+  }
+}
+
