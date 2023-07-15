@@ -6,13 +6,12 @@ const storeOptions = {
     return {
       todos: null,
       isLoading: false,
-      currFilterBy:null,
+      currFilterBy: null,
       userObject: null,
     };
   },
   mutations: {
     setTodos(state, { todos }) {
-      console.log('asd');
       state.todos = todos;
     },
 
@@ -27,6 +26,22 @@ const storeOptions = {
       const idx = todos.findIndex((todo) => todo._id === todoId);
       todos[idx].isActive = !todos[idx].isActive;
     },
+
+  },
+  getters: {
+    todosLength: state => {
+      if (state.todos) {
+        return state.todos.length;
+      }
+      
+    },
+    completedTodosCount: state=>{
+      if(state.todos){
+        console.log(state.currFilterBy);
+        const completedTodos = state.todos.filter(todo=>!todo.isActive)
+        return completedTodos.length
+      }
+    }
   },
 };
 export const store = createStore(storeOptions);
