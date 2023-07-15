@@ -1,6 +1,6 @@
 .todos-list > ul {
-  gap: 1em;
-  columns: 4 230px;
+  columns: 4 230px ;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,16 +14,27 @@
 
   flex-direction: row;
   align-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   width: 500px;
-  min-height: 5em;
   break-inside: avoid-column;
 
   border-radius: 8px;
   border: 1px solid rgb(94, 57, 57);
+  cursor: pointer;
+}
+.todos-list > ul > li:hover {
+  opacity: 1;
+}
 
-  cursor: auto;
+.todos-list > ul > li > span {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.todos-list > ul > li:hover > span {
+  opacity: 1;
 }
 
 .list-enter-active,
@@ -36,6 +47,14 @@
   transform: translateX(30px);
 }
 
-.todoCompleted{
+.todoCompleted  h2{
   text-decoration:line-through;
+}
+
+
+
+@media  (max-width: 600px) {
+  .todos-list > ul > li{
+    width: 350px
+  }
 }

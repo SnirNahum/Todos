@@ -14,17 +14,14 @@ export const todoService = {
 }
 
 function query(filterBy) {
-
     return storageService.query(TODOS_KEY)
         .then(todos => {
-            if(filterBy === undefined) return todos
-
-            if (filterBy.title) {
-                const regex = new RegExp(filterBy.title, 'i')
-                todos = todos.filter(todo => regex.test(todo.title))
+            if(filterBy === undefined || filterBy==='all') return todos
+            if (filterBy === 'completed') {
+                todos = todos.filter(todo => !todo.isActive)
             }
-            if (filterBy.isActive !== null) {
-                todos = todos.filter(todo => todo.isActive === filterBy.isActive)
+            if (filterBy === 'active') {
+                todos = todos.filter(todo => todo.isActive)
             }
             return todos
         })

@@ -1,0 +1,14 @@
+input[type="radio"] {
+  appearance: none;
+  
+}
+input[type="radio"] + label {
+    cursor: pointer;
+    appearance: none;
+    padding: 4px;
+    
+  }
+ 
+  .isActive + label{
+    border: 1px solid palevioletred;
+  }

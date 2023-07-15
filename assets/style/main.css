@@ -15,5 +15,8 @@
 @import "cmps/todo-preview.css";
 @import "cmps/todos-list.css";
 @import "cmps/todos-index.css";
-@import "cmps/todos-edit.css";
+@import "cmps/todos-add.css";
 @import "cmps/Spinner.css";
+@import "cmps/todo-filter.css";
+
+

@@ -4,9 +4,10 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 export default {
   template: `
-  <section class='todo-edit'>
+  <section class='todo-add'>
 <input type="text" v-model="todoToAdd.title" @keyup.enter="addTodo" required>
-<button @click="addTodo">Add todo</button>
+
+<button class="btn-add-todo" @click="addTodo">Add</button>
 
 </section>
     `,
