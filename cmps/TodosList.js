@@ -17,6 +17,7 @@ export default {
       </TransitionGroup>
     </section>
   `,
+
   methods: {
     onRemoveTodo(todoId) {
       this.$emit("remove", todoId);

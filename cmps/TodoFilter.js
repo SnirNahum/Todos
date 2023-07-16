@@ -28,7 +28,6 @@ export default {
   
     methods: {
       onSetFilterBy(filterBy) {
-        this.filterBy = filterBy;
         this.$emit("filter", filterBy);
       },
     },

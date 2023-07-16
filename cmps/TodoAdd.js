@@ -1,6 +1,5 @@
 import { todoService } from "../services/todos.service.js";
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js";
 
 export default {
   template: `
@@ -13,11 +12,8 @@ export default {
     `,
   data() {
     return {
-      todoToAdd: null,
+      todoToAdd: todoService.getEmptyTodo(),
     };
-  },
-  created() {
-    this.todoToAdd = todoService.getEmptyTodo();
   },
   methods: {
     addTodo() {
@@ -25,11 +21,10 @@ export default {
         showErrorMsg("Please enter a title");
         return;
       }
-      todoService.save({ ...this.todoToAdd }).then((savedTodo) => {
-        this.$store.commit({ type: "addTodo", savedTodo });
-        showSuccessMsg('Todo Added')
-        this.todoToAdd.title=''
-      });
+      this.$store
+        .dispatch({ type: "addTodo", todo: this.todoToAdd })
+        .then(() => showSuccessMsg('Todo added!'))
+        .catch(()=> showErrorMsg('Cannot add todo'))
     },
   },
 };

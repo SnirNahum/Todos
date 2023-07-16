@@ -14,7 +14,7 @@ export const userService = {
   addOrder,
   toggleOrderStatus,
 }
-
+window.userService = userService
 // Demo Data:
 _createUser()
 
@@ -22,10 +22,10 @@ function getLoggedinUser() {
   let user = JSON.parse(
     sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || null
   )
-  if (!user) {
-    user = { username: 'baba', password: '123' }
-    login({ username: 'baba', password: '123' })
-  }
+  // if (!user) {
+  //   user = { username: 'baba', password: '123' }
+  //   login({ username: 'baba', password: '123' })
+  // }
   return user
 }
 

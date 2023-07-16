@@ -12,6 +12,7 @@
 @import "cmps/UserMsg.css";
 @import "cmps/HomePage.css";
 @import "cmps/AppHeader.css";
+@import "cmps/AppFooter.css";
 @import "cmps/todo-preview.css";
 @import "cmps/todos-list.css";
 @import "cmps/todos-index.css";
@@ -19,5 +20,6 @@
 @import "cmps/Spinner.css";
 @import "cmps/todo-filter.css";
 @import "cmps/progress-bar.css";
+@import "cmps/user-profile.css";
 
 

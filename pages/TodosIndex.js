@@ -1,10 +1,12 @@
 import { todoService } from "../services/todos.service.js";
+import { userService } from "../services/user.service.js";
 
 import TodosList from "../cmps/TodosList.js";
 import TodoAdd from "../cmps/TodoAdd.js";
 import TodoFilter from "../cmps/TodoFilter.js";
 
 import Spinner from "../cmps/Spinner.js";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 
 export default {
   template: `
@@ -21,23 +23,30 @@ export default {
       </section>
       <section v-else><Spinner/></section>`,
   created() {
-    todoService
-      .query()
-      .then((todos) => this.$store.commit({ type: "setTodos", todos }));
+    this.$store.dispatch({type:'loadTodos'})
+      
   },
   computed: {
     todos() {
-      return this.$store.state.todos;
+      return this.$store.getters.todos;
     },
   },
   methods: {
     removeTodo(todoId) {
-      this.$store.commit({ type: "removeTodo", todoId });
-      todoService.remove(todoId);
+      this.$store
+        .dispatch({ type: "removeTodo", todoId })
+        .then(() => showSuccessMsg("Todo removed"))
+        .catch(() => showErrorMsg("Cannot remove todo"));
     },
     todoCompleted(todo) {
-      this.$store.commit({ type: "toggleIsActive", todoId: todo._id });
-      todoService.save(todo);
+      const todoToEdit = JSON.parse(JSON.stringify(todo));
+      todoToEdit.isActive = !todoToEdit.isActive;
+      this.$store
+        .dispatch({ type: "todoCompleted", todo: todoToEdit })
+        .then(() =>{if(!todoToEdit.isActive) showSuccessMsg('Well done!')
+        
+      })
+        .catch(() => showErrorMsg("Cannot complete todo"));
     },
     setFilterBy(filterBy) {
       todoService.query(filterBy).then((todos) => {
@@ -51,5 +60,6 @@ export default {
     TodoAdd,
     Spinner,
     TodoFilter,
+    userService,
   },
 };

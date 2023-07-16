@@ -5,6 +5,7 @@ import { router } from './routes.js'
 
 import AppHeader from './cmps/AppHeader.js'
 import AppFooter from './cmps/AppFooter.js'
+import UserProfile from "./pages/UserProfile.js";
 import UserMsg from './cmps/UserMsg.js'
 
 const options = {
@@ -14,12 +15,14 @@ const options = {
             <RouterView />
             <AppFooter />
             <UserMsg />
+            
         </section>
     `,
 	components: {
 		AppHeader,
 		AppFooter,
 		UserMsg,
+        UserProfile,
 	},
 }
 
